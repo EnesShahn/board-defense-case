@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7226f42fba274468d1d9ae2f950497, type: 3}
+  m_Name: Gunner Lv 1 - Enemy Config
+  m_EditorClassIdentifier: ESF.Characters::ESF.Enemies.EnemyConfig
+  _enemyConfigId: {fileID: 11400000, guid: df290c4decab07848a329a260af64f43, type: 2}
+  _prefab: {fileID: 4477116203212548413, guid: 4d243ae225691fd498208729728222e9, type: 3}
+  _enemyData:
+    _items:
+    - rid: 5104984169798697131
+    - rid: 5104984169798697132
+    - rid: 5104984169798697133
+    - rid: 5104984169798697199
+  references:
+    version: 2
+    RefIds:
+    - rid: 5104984169798697131
+      type: {class: EnemyHealthConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _maxHealth: 3
+    - rid: 5104984169798697132
+      type: {class: EnemyDamageConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _damage: 1
+    - rid: 5104984169798697133
+      type: {class: EnemyFireRateConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _fireRate: 1
+    - rid: 5104984169798697199
+      type: {class: EnemyMoveSpeedConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _moveSpeed: 2

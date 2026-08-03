@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9abadcbaa9dd5a4bb79922af0c4717c, type: 3}
+  m_Name: Turret Lv 3 - Tower Config
+  m_EditorClassIdentifier: ESF::ESF.Towers.TowerConfig
+  _towerConfigId: {fileID: 11400000, guid: 78029cc9d0f09d049bece79b6813a719, type: 2}
+  _towerName: Turret Lv 3
+  _towerIcon: {fileID: 0}
+  _prefab: {fileID: 6290316140023207861, guid: 7f4b306185a6a8043a00e03010020b2d, type: 3}
+  _towerData:
+    _items:
+    - rid: 5104984169798697031
+    - rid: 5104984169798697032
+    - rid: 5104984169798697033
+    - rid: 5104984169798697034
+    - rid: 5104984169798697411
+  references:
+    version: 2
+    RefIds:
+    - rid: 5104984169798697031
+      type: {class: TowerHealthConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _maxHealth: 7
+    - rid: 5104984169798697032
+      type: {class: TowerDamageConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _damage: 10
+    - rid: 5104984169798697033
+      type: {class: TowerFireRateConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _fireRate: 0.2
+    - rid: 5104984169798697034
+      type: {class: TowerFireDirectionConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _fireDirection: 1
+    - rid: 5104984169798697411
+      type: {class: TowerAttackRangeConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      data:
+        _range: 2
