@@ -1,0 +1,14 @@
+{
+    "name": "ESF.Core.SerializedInterfaces",
+    "rootNamespace": "ESF.Core.SerializedInterfaces",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

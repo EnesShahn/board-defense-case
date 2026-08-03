@@ -1,0 +1,18 @@
+{
+    "name": "ESF.Misc.Billboarding",
+    "rootNamespace": "ESF.Misc.Billboarding",
+    "references": [
+        "ESF.Core.Services",
+        "ESF.Core.UpdateScheduler",
+        "ESF.Utilities.Extensions"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

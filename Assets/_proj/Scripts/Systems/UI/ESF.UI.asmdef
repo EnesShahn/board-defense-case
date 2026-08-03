@@ -1,0 +1,18 @@
+{
+    "name": "ESF.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3b570a5146f9d4f0fa107ed4559471a3",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:e1019d6a257ae3b4784914fd754a779c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

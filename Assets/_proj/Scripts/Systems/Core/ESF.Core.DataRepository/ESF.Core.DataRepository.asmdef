@@ -1,0 +1,16 @@
+{
+    "name": "ESF.Core.DataRepository",
+    "rootNamespace": "ESF.Core.DataRepository",
+    "references": [
+        "ESF.Core.UpdateScheduler"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

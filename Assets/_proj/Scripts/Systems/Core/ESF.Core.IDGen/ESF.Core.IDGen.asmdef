@@ -1,0 +1,16 @@
+{
+    "name": "ESF.Core.IDGen",
+    "rootNamespace": "ESF.Core.IDGen",
+    "references": [
+        "ESF.Core.Logging"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
