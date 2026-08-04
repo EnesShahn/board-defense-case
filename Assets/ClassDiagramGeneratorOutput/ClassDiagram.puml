@@ -1,0 +1,703 @@
+@startuml
+class BaseHealthController {
+    - _currentHealth : float
+    - _currentVisualHealth : float
+    + BaseRoot : BaseRoot
+    + MaxHealth : int
+    + CurrentHealth : float
+}
+class BaseRoot {
+}
+class CellLane {
+}
+class CellManager {
+}
+class CellRoot {
+    + CellIndex : Vector2Int
+}
+class CellTag {
+    + CellRoot : CellRoot
+}
+class GunnerEnemyBrain {
+    - _targetBaseRoot : BaseRoot
+    - _laneIndex : int
+    - _cellLane : CellLane
+    - _cellManager : CellManager
+    - _targetCellRoot : CellRoot
+    - _targetTowerRoot : TowerRoot
+    - _currentCellIndex : int
+    - _moveSpeed : float
+}
+class EnemyDriver {
+    + Update : StateEvent
+}
+class EnemyDestructionController {
+    - _isDestroyed : bool
+    - _isDestroying : bool
+    - _enemyConfigService : EnemyConfigService
+    + EnemyRoot : EnemyRoot
+}
+class EnemyHealthController {
+    - _enemyHealthConfigData : EnemyHealthConfigData
+    - _maxHealth : int
+    - _currentHealth : float
+    - _currentVisualHealth : float
+    + EnemyRoot : EnemyRoot
+    + MaxHealth : int
+    + CurrentHealth : float
+}
+class BasicEnemyShootAtBaseController {
+    - _targetBaseRoot : BaseRoot
+    - _enemyFireRateConfigData : EnemyFireRateConfigData
+    - _enemyDamageConfigData : EnemyDamageConfigData
+    - _fireTimer : float
+    + EnemyRoot : EnemyRoot
+}
+class BasicEnemyShootAtTowerController {
+    - _targetTowerRoot : TowerRoot
+    - _enemyFireRateConfigData : EnemyFireRateConfigData
+    - _enemyDamageConfigData : EnemyDamageConfigData
+    - _fireTimer : float
+    + EnemyRoot : EnemyRoot
+}
+class WaveCommandReceiver {
+    + EnemyRoot : EnemyRoot
+}
+class EnemyDamageConfigData {
+    + Damage : int
+}
+class EnemyFireRateConfigData {
+    + FireRate : float
+}
+class EnemyHealthConfigData {
+    + MaxHealth : int
+}
+class EnemyMoveSpeedConfigData {
+    + MoveSpeed : float
+}
+class EnemyConfig {
+    + EnemyConfigId : int
+    + Prefab : EnemyRoot
+}
+class EnemyConfigCollection {
+    + EnemyConfigs : List<EnemyConfig>
+}
+class EnemyConfigId {
+}
+class EnemyConfigService {
+    - _enemyConfigs : List<EnemyConfig>
+    - _activeEnemies : List<EnemyRoot>
+    - _enemyPoolParent : Transform
+}
+interface IEnemyData {
+}
+class EnemyComponentInstaller {
+}
+class EnemyRoot {
+    - _enemyConfig : EnemyConfig
+    - _components : ComponentContainer<IEnemyComponent>
+    - _isCreatedAndActive : bool
+    + Components : ComponentContainer<IEnemyComponent>
+    + EnemyConfig : EnemyConfig
+    + IsCreatedAndActive : bool
+    + EnemyPrePoolAllocate : PriorityEvent<EnemyRoot>
+    + EnemyPostPoolAllocate : PriorityEvent<EnemyRoot>
+    + EnemyPreCreate : PriorityEvent<EnemyRoot>
+    + EnemyPostCreate : PriorityEvent<EnemyRoot>
+    + EnemyPreDestroy : PriorityEvent<EnemyRoot>
+    + EnemyPostDestroy : PriorityEvent<EnemyRoot>
+}
+class EnemyTag {
+    + EnemyRoot : EnemyRoot
+}
+interface IEnemyComponent {
+}
+class GameRepository {
+    - RepositorySaveKey : string
+    - _serializerSettings : JsonSerializerSettings
+    - _saveKey : string
+    - _data : GameRepositoryData
+    + Data : GameRepositoryData
+}
+class GameRepositoryData {
+    + CurrentLevelIndex : int
+}
+class GameRepositoryInstaller {
+}
+class ApplicationServiceInstaller {
+}
+class GameController {
+    - _levelService : LevelService
+    - _gameRepository : GameRepositorySystem.GameRepository
+    - _screenFadeService : ScreenFadeService
+}
+class InitializeTowerInventory {
+}
+class LevelServiceDestroyer {
+}
+class LevelServiceInstaller {
+}
+class LevelConfig {
+    + Prefab : GameObject
+}
+class LevelConfigCollection {
+    + LevelConfigs : List<LevelConfig>
+}
+class LevelService {
+    - _levelConfigs : List<LevelConfig>
+    - _activeLevelIndex : int
+    - _activeLevel : GameObject
+    + ActiveLevel : GameObject
+    + ActiveLevelIndex : int
+    + LevelConfigs : List<LevelConfig>
+}
+class TowerCellRoot {
+    - _attachedTowerRoot : TowerRoot
+    + CellRoot : CellRoot
+    + AttachedTowerRoot : TowerRoot
+}
+class TowerCellTag {
+    + TowerCellRoot : TowerCellRoot
+}
+class TowerInventoryConfig {
+    + TowerInventories : TowerInventory[]
+}
+class TowerInventory {
+    + TowerConfigId : TowerConfigId
+    + TowerCount : int
+}
+class TowerInventoryController {
+    - _slots : TowerInventorySlot[]
+    - _initialized : bool
+    + Slots : TowerInventorySlot[]
+}
+class TowerInventorySlot {
+    - _slotIndex : int
+    - _currentTowerConfigId : int
+    - _currentStackCount : int
+    - _currentSlotState : InventorySlotState
+    + SlotIndex : int
+    + CurrentTowerConfigId : int
+    + CurrentStackCount : int
+    + CurrentSlotState : InventorySlotState
+}
+class TowerInventorySlotView {
+    - _indexInSlot : int
+    + IndexInSlot : int
+}
+class TowerInventoryView {
+    - _inventorySlotViews : TowerInventorySlotView[]
+}
+class TowerInventoryViewController {
+    - _towerInventoryView : TowerInventoryView
+    - _towerInventoryController : TowerInventoryController
+    - _towerConfigService : TowerConfigService
+}
+class DestroyTowerToolView {
+}
+class ToolsController {
+    - _towerConfigService : TowerConfigService
+    - _towerInventoryController : TowerInventoryController
+    - _currentSelectedTowerInventory : int
+    - _mainCamera : Camera
+    - _towerCreateTool : TowerCreateTool
+    - _towerDestroyTool : TowerDestroyTool
+}
+class TowerCreateTool {
+    - _towerConfigService : TowerConfigService
+    - _towerInventoryController : TowerInventoryController
+    - _selectedTowerConfig : TowerConfig
+    - _raycastLayerMask : int
+    - _camera : Camera
+    - _toolEnabled : bool
+    - _raycastHits : RaycastHit[]
+    + ToolEnabled : bool
+}
+class TowerCreatedEventArgs {
+    - _towerConfigId : int
+    - _placedCellIndex : Vector2Int
+    + TowerConfigId : int
+    + PlacedCellIndex : Vector2Int
+}
+class TowerDestroyTool {
+    - _towerConfigService : TowerConfigService
+    - _raycastLayerMask : int
+    - _camera : Camera
+    - _toolEnabled : bool
+    - _raycastHits : RaycastHit[]
+    + ToolEnabled : bool
+}
+class TowerDestroyedEventArgs {
+    - _towerConfigId : int
+    + TowerConfigId : int
+}
+class TurretTowerBrain {
+}
+class TowerCellReference {
+    - _towerCellAttachedTo : TowerCellRoot
+    + TowerCellAttachedTo : TowerCellRoot
+    + TowerRoot : TowerRoot
+}
+class TowerDestructionController {
+    - _isDestroyed : bool
+    - _isDestroying : bool
+    - _towerConfigService : TowerConfigService
+    + TowerRoot : TowerRoot
+}
+class TowerDetachCellOnDestroyed {
+}
+class TowerEnemyDetector {
+    - _enemiesInRange : List<EnemyRoot>
+    - _enemiesInRangeHashSet : HashSet<EnemyRoot>
+    + EnemiesInRange : List<EnemyRoot>
+    + AnyEnemyInRange : bool
+}
+class TowerHealthController {
+    - _towerHealthConfigData : TowerHealthConfigData
+    - _maxHealth : int
+    - _currentHealth : float
+    - _currentVisualHealth : float
+    + TowerRoot : TowerRoot
+    + MaxHealth : int
+    + CurrentHealth : float
+}
+class TowerRangeController {
+    - _towerAttackRangeConfigData : TowerAttackRangeConfigData
+    - _towerFireDirectionConfigData : TowerFireDirectionConfigData
+    + TowerRoot : TowerRoot
+}
+class TurretShootController {
+    - _targetTowerRoot : TowerRoot
+    - _towerFireRateConfigData : TowerFireRateConfigData
+    - _towerDamageConfigData : TowerDamageConfigData
+    - _fireTimer : float
+    + TowerRoot : TowerRoot
+}
+class TowerAttackRangeConfigData {
+    + Range : float
+}
+class TowerDamageConfigData {
+    + Damage : int
+}
+class TowerFireDirectionConfigData {
+    + FireDirection : TowerFireDirectionType
+}
+class TowerFireRateConfigData {
+    + FireRate : float
+}
+class TowerHealthConfigData {
+    + MaxHealth : int
+}
+interface ITowerData {
+}
+class TowerConfig {
+    + TowerConfigId : int
+    + TowerName : string
+    + TowerIcon : Sprite
+    + Prefab : TowerRoot
+}
+class TowerConfigCollection {
+    + TowerConfigs : List<TowerConfig>
+}
+class TowerConfigId {
+}
+class TowerConfigService {
+    - _towerConfigs : List<TowerConfig>
+    - _activeTowers : List<TowerRoot>
+    - _towerPoolParent : Transform
+}
+interface ITowerComponent {
+}
+class TowerComponentInstaller {
+}
+class TowerRoot {
+    - _towerConfig : TowerConfig
+    - _components : ComponentContainer<ITowerComponent>
+    - _isCreatedAndActive : bool
+    + Components : ComponentContainer<ITowerComponent>
+    + TowerConfig : TowerConfig
+    + IsCreatedAndActive : bool
+    + TowerPrePoolAllocate : PriorityEvent<TowerRoot>
+    + TowerPostPoolAllocate : PriorityEvent<TowerRoot>
+    + TowerPreCreate : PriorityEvent<TowerRoot>
+    + TowerPostCreate : PriorityEvent<TowerRoot>
+    + TowerPreDestroy : PriorityEvent<TowerRoot>
+    + TowerPostDestroy : PriorityEvent<TowerRoot>
+}
+class TowerTag {
+    + TowerRoot : TowerRoot
+}
+class WaveController {
+    - _spawnedEnemiesByLane : List<HashSet<EnemyRoot>>
+    - _enemyConfigService : EnemyConfigService
+    - _isWaveActive : bool
+    - _currentWaveIndex : int
+    - _currentWaveInterval : float
+    - _waveTimer : float
+    - _currentWaveEnemy : int
+    - _currentWaveEnemySpawnCount : int
+    - _spawnTimer : float
+    + IsWaveActive : bool
+    + CurrentWaveIndex : int
+    + CurrentWaveInterval : float
+    + WaveTimer : float
+    + IsThereNextWave : bool
+}
+class WaveControllerConfig {
+    + WaveConfigs : WaveConfig[]
+}
+class WaveConfig {
+    + WaveInterval : float
+    + WaveEnemyConfigs : List<WaveEnemyConfig>
+}
+class WaveEnemyConfig {
+    + EnemyConfigId : EnemyConfigId
+    + SpawnInterval : float
+    + SpawnCount : int
+}
+class WaveInfoUI {
+}
+class BaseRepository <<abstract>> {
+    # _profileName : string
+    + Load() : void
+    + Save() : void
+}
+class Float3Data {
+    + x : float
+    + y : float
+    + z : float
+}
+class RepositoryService {
+    - _autoSaveInterval : float
+    - _updateService : UpdateService
+    - _currentAutoSaveTimer : float
+}
+' RepositoryService: <summary>\ Features: Auto Save Sync Save and Sync Load (Unit Of Work) Holds all repositories in single service (simplifies usage instead of getting each repository separately you use one) </summary>
+class LegitSmartIDController {
+    - MaxIDNumber : uint
+    - _usedIds : HashSet<uint>
+    - _lastUsedItemId : uint
+}
+class ELogger {
+}
+class EditorUtility {
+    - initializeCurrentEditorWindowMetadata : bool
+    - current : PropertyInfo
+    - m_ActualView : FieldInfo
+}
+class ReflectionExtensions {
+}
+class ReorderableListExtensions {
+    - InvalidateCacheRecursiveMethodInfo : MethodInfo
+}
+class SerializedPropertyExtensions {
+    - pattern : string
+    - rx : Regex
+}
+class SPInfo {
+    + Property : SerializedProperty
+    + Value : object
+    + FieldType : Type
+}
+class PListPropertyDrawer {
+}
+class PListDrawer {
+    - serializedProperty : SerializedProperty
+    - listItemsSP : SerializedProperty
+    - listItemsObj : object
+    - listItemType : Type
+    - listItemTypes : Type[]
+    - typeSelectorGenericMenu : TypeSelectorGenericMenu
+    - clickedButtonItemIndex : int
+    - previousItemCount : int
+    - rightClickedItemIndex : int
+    - isInvalidNesting : bool
+    - isInvalidType : bool
+}
+class TypeSelectorGenericMenu {
+    - genericMenu : GenericMenu
+    - types : Type[]
+    - OnTypeSelected : Action<Type>
+}
+class PList {
+    + Count : int
+    + IsReadOnly : bool
+    + IsSynchronized : bool
+    + SyncRoot : object
+    + IsFixedSize : bool
+}
+class BaseClass {
+    + IntVar : int
+    + StringVar : string
+    + SpriteVar : Sprite
+    + BoolVar : bool
+}
+class ChildClass1 {
+}
+class ChildClass2 {
+    + ChildFloatVar : float
+}
+class ChildClass2Struct {
+    + FloatVar : float
+}
+class ChildClass3 {
+}
+class PListBaseClass {
+    + plist : PList<BaseClass>
+}
+class ListBaseClass {
+    + list : List<BaseClass>
+}
+class ListPListBaseClass {
+    + list : List<PListBaseClass>
+}
+class ListListBaseClass {
+    + list : List<ListBaseClass>
+}
+class PListPListBaseClass {
+    + plist : PList<PListBaseClass>
+}
+class ColliderGroup {
+    + Colliders : IReadOnlyList<Collider>
+}
+class CollisionEventsListener {
+    + OnCollisionEntered : PriorityEvent<Collision>
+    + OnCollisionExited : PriorityEvent<Collision>
+}
+class TriggerEventsListener {
+    + OnTriggerEntered : PriorityEvent<Collider>
+    + OnTriggerStaying : PriorityEvent<Collider>
+    + OnTriggerExited : PriorityEvent<Collider>
+}
+class PriorityAction {
+    - _calls : Action[]
+    - _levelsCount : int
+}
+class PriorityAction {
+    - _calls : Action<T0>[]
+    - levels_Count : int
+}
+class PriorityAction {
+    - _levelsCount : int
+}
+class PriorityAction {
+    - _levelsCount : int
+}
+class PriorityAction {
+    - _levelsCount : int
+}
+class PriorityAction {
+    - _levelsCount : int
+}
+class PriorityEvent {
+    - _handlers : EventHandler[]
+}
+class PriorityEvent {
+    - _handlers : EventHandler<TArgs>[]
+}
+class SerializedInterfacePropertyDrawer {
+}
+class SerializedInterface {
+}
+class ServicesDebuggerEditor {
+    - _sortByTypeName : bool
+    - _drawGuard : HashSet<object>
+}
+class ReferenceEqualityComparer {
+}
+class OperationResults {
+}
+class ReadonlyServiceContainer {
+    - _serviceContainer : ServiceContainer
+}
+class Service {
+    ~ s_serviceContainer : ServiceContainer
+    + ServiceContainer : ServiceContainer
+    + ReadonlyServiceContainer : ReadonlyServiceContainer
+}
+class ServiceContainer {
+}
+class ServiceNotFoundException {
+}
+class ServicesDebugger {
+}
+interface ITag {
+}
+class Tag <<abstract>> {
+}
+class TagsExtensions {
+}
+class TagsService {
+}
+class TagData {
+}
+class NormalUpdateHandler {
+    - _initialized : bool
+    - _updateService : UpdateService
+}
+class PostUpdateHandler {
+    - _initialized : bool
+    - _updateService : UpdateService
+}
+class PreUpdateHandler {
+    - _initialized : bool
+    - _updateService : UpdateService
+}
+class UpdateService {
+    ~ PreUpdateHandlerExecutionOrder : int
+    ~ NormalUpdateHandlerExecutionOrder : int
+    ~ PostUpdateHandlerExecutionOrder : int
+    - _preUpdateHandler : PreUpdateHandler
+    - _normalUpdateHandler : NormalUpdateHandler
+    - _postUpdateHandler : PostUpdateHandler
+}
+class FloatSO {
+    + Value : float
+}
+class IntSO {
+    + Value : int
+}
+class StringSO {
+    + Value : string
+}
+class BillboardController {
+    - _billboardService : BillboardService
+}
+class BillboardService {
+    - _updateService : UpdateService
+    - _targetCamera : Camera
+    - _billboardControllers : HashSet<BillboardController>
+    + TargetCamera : Camera
+}
+class ScreenFadeService {
+    - _fadeInMotionHandle : MotionHandle
+    - _fadeOutMotionHandle : MotionHandle
+}
+class UIBar {
+}
+class ColorExtensions {
+}
+class RandomHelper {
+}
+class TransformExtensions {
+}
+class Vector3Extensions {
+}
+Tag <|-- CellTag
+ITag <|.. CellTag
+IEnemyComponent <|.. EnemyDestructionController
+IEnemyComponent <|.. EnemyHealthController
+IEnemyComponent <|.. BasicEnemyShootAtBaseController
+IEnemyComponent <|.. BasicEnemyShootAtTowerController
+IEnemyComponent <|.. WaveCommandReceiver
+IEnemyData <|-- EnemyDamageConfigData
+IEnemyData <|-- EnemyFireRateConfigData
+IEnemyData <|-- EnemyHealthConfigData
+IEnemyData <|-- EnemyMoveSpeedConfigData
+IntSO <|-- EnemyConfigId
+Tag <|-- EnemyTag
+ITag <|.. EnemyTag
+BaseRepository <|-- GameRepository
+Tag <|-- TowerCellTag
+ITag <|.. TowerCellTag
+EventArgs <|-- TowerCreatedEventArgs
+EventArgs <|-- TowerDestroyedEventArgs
+ITowerComponent <|.. TowerCellReference
+ITowerComponent <|.. TowerDestructionController
+ITowerComponent <|.. TowerHealthController
+ITowerComponent <|.. TowerRangeController
+ITowerComponent <|.. TurretShootController
+ITowerData <|-- TowerAttackRangeConfigData
+ITowerData <|-- TowerDamageConfigData
+ITowerData <|-- TowerFireDirectionConfigData
+ITowerData <|-- TowerFireRateConfigData
+ITowerData <|-- TowerHealthConfigData
+IntSO <|-- TowerConfigId
+Tag <|-- TowerTag
+ITag <|.. TowerTag
+BaseClass <|-- ChildClass1
+BaseClass <|-- ChildClass2
+BaseClass <|-- ChildClass3
+PropertyDrawer <|-- SerializedInterfacePropertyDrawer
+UnityEditor.Editor <|-- ServicesDebuggerEditor
+IEqualityComparer <|-- ReferenceEqualityComparer
+Exception <|-- ServiceNotFoundException
+BaseHealthController --> BaseRoot : BaseRoot
+CellTag --> CellRoot : CellRoot
+GunnerEnemyBrain --> BaseRoot : _targetBaseRoot
+GunnerEnemyBrain --> CellLane : _cellLane
+GunnerEnemyBrain --> CellManager : _cellManager
+GunnerEnemyBrain --> CellRoot : _targetCellRoot
+GunnerEnemyBrain --> TowerRoot : _targetTowerRoot
+EnemyDestructionController --> EnemyConfigService : _enemyConfigService
+EnemyDestructionController --> EnemyRoot : EnemyRoot
+EnemyHealthController --> EnemyHealthConfigData : _enemyHealthConfigData
+EnemyHealthController --> EnemyRoot : EnemyRoot
+BasicEnemyShootAtBaseController --> BaseRoot : _targetBaseRoot
+BasicEnemyShootAtBaseController --> EnemyFireRateConfigData : _enemyFireRateConfigData
+BasicEnemyShootAtBaseController --> EnemyDamageConfigData : _enemyDamageConfigData
+BasicEnemyShootAtBaseController --> EnemyRoot : EnemyRoot
+BasicEnemyShootAtTowerController --> TowerRoot : _targetTowerRoot
+BasicEnemyShootAtTowerController --> EnemyFireRateConfigData : _enemyFireRateConfigData
+BasicEnemyShootAtTowerController --> EnemyDamageConfigData : _enemyDamageConfigData
+BasicEnemyShootAtTowerController --> EnemyRoot : EnemyRoot
+WaveCommandReceiver --> EnemyRoot : EnemyRoot
+EnemyConfig --> EnemyRoot : Prefab
+EnemyRoot --> EnemyConfig : _enemyConfig, EnemyConfig
+EnemyRoot --> PriorityEvent : EnemyPrePoolAllocate, EnemyPostPoolAllocate, EnemyPreCreate, EnemyPostCreate, EnemyPreDestroy...
+EnemyTag --> EnemyRoot : EnemyRoot
+GameRepository --> GameRepositoryData : _data, Data
+GameRepository --> BaseRepository : Load(), Save()
+GameRepositoryInstaller --> BaseRepository : Load()
+GameController --> LevelService : _levelService
+GameController --> ScreenFadeService : _screenFadeService
+GameController --> BaseRepository : Save()
+TowerCellRoot --> TowerRoot : _attachedTowerRoot, AttachedTowerRoot
+TowerCellRoot --> CellRoot : CellRoot
+TowerCellTag --> TowerCellRoot : TowerCellRoot
+TowerInventory --> TowerConfigId : TowerConfigId
+TowerInventoryViewController --> TowerInventoryView : _towerInventoryView
+TowerInventoryViewController --> TowerInventoryController : _towerInventoryController
+TowerInventoryViewController --> TowerConfigService : _towerConfigService
+ToolsController --> TowerConfigService : _towerConfigService
+ToolsController --> TowerInventoryController : _towerInventoryController
+ToolsController --> TowerCreateTool : _towerCreateTool
+ToolsController --> TowerDestroyTool : _towerDestroyTool
+TowerCreateTool --> TowerConfigService : _towerConfigService
+TowerCreateTool --> TowerInventoryController : _towerInventoryController
+TowerCreateTool --> TowerConfig : _selectedTowerConfig
+TowerDestroyTool --> TowerConfigService : _towerConfigService
+TowerCellReference --> TowerCellRoot : _towerCellAttachedTo, TowerCellAttachedTo
+TowerCellReference --> TowerRoot : TowerRoot
+TowerDestructionController --> TowerConfigService : _towerConfigService
+TowerDestructionController --> TowerRoot : TowerRoot
+TowerHealthController --> TowerHealthConfigData : _towerHealthConfigData
+TowerHealthController --> TowerRoot : TowerRoot
+TowerRangeController --> TowerAttackRangeConfigData : _towerAttackRangeConfigData
+TowerRangeController --> TowerFireDirectionConfigData : _towerFireDirectionConfigData
+TowerRangeController --> TowerRoot : TowerRoot
+TurretShootController --> TowerRoot : _targetTowerRoot, TowerRoot
+TurretShootController --> TowerFireRateConfigData : _towerFireRateConfigData
+TurretShootController --> TowerDamageConfigData : _towerDamageConfigData
+TowerConfig --> TowerRoot : Prefab
+TowerRoot --> TowerConfig : _towerConfig, TowerConfig
+TowerRoot --> PriorityEvent : TowerPrePoolAllocate, TowerPostPoolAllocate, TowerPreCreate, TowerPostCreate, TowerPreDestroy...
+TowerTag --> TowerRoot : TowerRoot
+WaveController --> EnemyConfigService : _enemyConfigService
+WaveEnemyConfig --> EnemyConfigId : EnemyConfigId
+RepositoryService --> UpdateService : _updateService
+RepositoryService --> BaseRepository : Save()
+CollisionEventsListener --> PriorityEvent : OnCollisionEntered, OnCollisionExited
+TriggerEventsListener --> PriorityEvent : OnTriggerEntered, OnTriggerStaying, OnTriggerExited
+ReadonlyServiceContainer --> ServiceContainer : _serviceContainer
+Service --> ServiceContainer : s_serviceContainer, ServiceContainer
+Service --> ReadonlyServiceContainer : ReadonlyServiceContainer
+NormalUpdateHandler --> UpdateService : _updateService
+PostUpdateHandler --> UpdateService : _updateService
+PreUpdateHandler --> UpdateService : _updateService
+UpdateService --> PreUpdateHandler : _preUpdateHandler
+UpdateService --> NormalUpdateHandler : _normalUpdateHandler
+UpdateService --> PostUpdateHandler : _postUpdateHandler
+BillboardController --> BillboardService : _billboardService
+BillboardService --> UpdateService : _updateService
+@enduml
