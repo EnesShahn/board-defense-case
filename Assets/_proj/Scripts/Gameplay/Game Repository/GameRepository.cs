@@ -10,9 +10,9 @@ namespace Game.GameRepositorySystem
         private const string RepositorySaveKey = "GameRepository";
         private JsonSerializerSettings _serializerSettings;
         private string _saveKey;
-        private GameSettingsRepositoryData _data;
+        private GameRepositoryData _data = new();
 
-        public GameSettingsRepositoryData Data => _data;
+        public GameRepositoryData Data => _data;
 
         public GameRepository(string profileName) : base(profileName)
         {
@@ -21,8 +21,6 @@ namespace Game.GameRepositorySystem
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             _saveKey = _profileName + "." + RepositorySaveKey;
-
-            _data = new();
         }
 
         public override void Load()
@@ -30,10 +28,9 @@ namespace Game.GameRepositorySystem
             if (PlayerPrefs.HasKey(_saveKey))
             {
                 var dataString = PlayerPrefs.GetString(_saveKey);
-                _data = JsonConvert.DeserializeObject<GameSettingsRepositoryData>(dataString, _serializerSettings);
-
-                if (_data == null)
-                    _data = new();
+                var loadedData = JsonConvert.DeserializeObject<GameRepositoryData>(dataString, _serializerSettings);
+                if (loadedData != null)
+                    _data = loadedData;
             }
         }
         public override void Save()
@@ -43,7 +40,7 @@ namespace Game.GameRepositorySystem
         }
 
         [Serializable]
-        public class GameSettingsRepositoryData
+        public class GameRepositoryData
         {
             public int CurrentLevelIndex;
         }

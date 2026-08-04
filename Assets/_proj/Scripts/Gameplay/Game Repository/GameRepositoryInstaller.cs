@@ -12,6 +12,7 @@ namespace Game.GameRepositorySystem
             var repositoryService = Service.Resolve<RepositoryService>();
 
             GameRepository gameRepository = new GameRepository("Game");
+            gameRepository.Load();
             repositoryService.AddRepositoryForSync(gameRepository);
             Service.Register(gameRepository);
 

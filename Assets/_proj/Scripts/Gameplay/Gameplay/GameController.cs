@@ -32,7 +32,6 @@ namespace Game.Main
             _levelService = Service.Resolve<LevelService>();
             _screenFadeService = Service.Resolve<ScreenFadeService>();
             _gameRepository = Service.Resolve<GameRepositorySystem.GameRepository>();
-            _gameRepository.Load();
 
             _screenFadeService.CancelAndSetState(true);
 
