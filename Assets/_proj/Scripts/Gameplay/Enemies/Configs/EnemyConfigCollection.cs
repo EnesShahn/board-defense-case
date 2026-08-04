@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Enemies.Configs
 {
-    [CreateAssetMenu(menuName = "ESF/Enemies/Enemy Config Collection")]
+    [CreateAssetMenu(menuName = "Game/Enemies/Enemy Config Collection")]
     public class EnemyConfigCollection : ScriptableObject
     {
         [SerializeField] private List<EnemyConfig> _enemyConfigs;

@@ -3,6 +3,6 @@ using UnityEngine;
 
 namespace Game.Towers.Configs
 {
-    [CreateAssetMenu(menuName = "ESF/Towers/Tower Config Id")]
+    [CreateAssetMenu(menuName = "Game/Towers/Tower Config Id")]
     public class TowerConfigId : IntSO { }
 }

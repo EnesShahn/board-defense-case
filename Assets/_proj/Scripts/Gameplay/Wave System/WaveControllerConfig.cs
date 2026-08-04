@@ -5,7 +5,7 @@ using Game.Enemies.Configs;
 
 namespace Game.WaveSystem
 {
-    [CreateAssetMenu(menuName = "ESF/Wave Controller Config")]
+    [CreateAssetMenu(menuName = "Game/Wave Controller Config")]
     public class WaveControllerConfig : ScriptableObject
     {
         [SerializeField] private WaveConfig[] _waveConfigs;

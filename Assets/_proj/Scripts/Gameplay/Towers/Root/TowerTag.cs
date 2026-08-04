@@ -1,4 +1,3 @@
-using System;
 using ESF.Core.Tags;
 using UnityEngine;
 

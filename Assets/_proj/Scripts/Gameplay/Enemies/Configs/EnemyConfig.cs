@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Enemies.Configs
 {
-    [CreateAssetMenu(menuName = "ESF/Enemies/Enemy Config")]
+    [CreateAssetMenu(menuName = "Game/Enemies/Enemy Config")]
     public class EnemyConfig : ScriptableObject
     {
         [SerializeField] private EnemyConfigId _enemyConfigId;

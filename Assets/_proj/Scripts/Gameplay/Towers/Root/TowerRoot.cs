@@ -1,7 +1,6 @@
 using UnityEngine;
 using ESF.Core.GenericComponentContainer;
 using ESF.Core.PriorityEvents;
-using Game.Enemies.Root;
 using Game.Towers.Configs;
 
 namespace Game.Towers.Root

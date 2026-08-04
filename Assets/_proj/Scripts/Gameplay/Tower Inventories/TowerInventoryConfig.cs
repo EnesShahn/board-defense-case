@@ -4,7 +4,7 @@ using Game.Towers.Configs;
 
 namespace Game.TowerInventories
 {
-    [CreateAssetMenu(menuName = "ESF/Tower Inventory Config")]
+    [CreateAssetMenu(menuName = "Game/Tower Inventory Config")]
     public class TowerInventoryConfig : ScriptableObject
     {
         [SerializeField] private TowerInventory[] _towerInventories;

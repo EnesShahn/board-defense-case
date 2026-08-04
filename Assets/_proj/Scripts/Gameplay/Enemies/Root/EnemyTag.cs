@@ -1,6 +1,5 @@
 using ESF.Core.Tags;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Enemies.Root
 {

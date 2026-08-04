@@ -6,7 +6,7 @@ using Game.Towers.Root;
 
 namespace Game.Towers.Configs
 {
-    [CreateAssetMenu(menuName = "ESF/Towers/Tower Config")]
+    [CreateAssetMenu(menuName = "Game/Towers/Tower Config")]
     public class TowerConfig : ScriptableObject
     {
         [SerializeField] private TowerConfigId _towerConfigId;
