@@ -2,17 +2,14 @@ using ESF.Core.Services;
 using Game.TowerInventories;
 using Game.TowerInventories.UI;
 using Game.Towers.Configs;
-using Game.TowerTools;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Game.Levels
+namespace Game.TowerTools
 {
     public class ToolsController : MonoBehaviour
     {
         [SerializeField] private TowerInventoryView _towerInventoryView;
-        [SerializeField] private Button _destroyTowerButton;
-        [SerializeField] private GameObject _destroyTowerButtonHighlight;
+        [SerializeField] private DestroyTowerToolView _destroyTowerToolView;
         [SerializeField] private LayerMask _raycastLayerMask;
 
         private TowerConfigService _towerConfigService;
@@ -30,19 +27,16 @@ namespace Game.Levels
             _mainCamera = Service.Resolve<Camera>();
 
             _towerInventoryView.InventorySlotButtonClicked += OnInventorySlotButtonClicked;
-            _destroyTowerButton.onClick.AddListener(OnDestroyTowerButtonClicked);
-            _destroyTowerButtonHighlight.SetActive(false);
+            _destroyTowerToolView.ToolButtonClicked += OnDestroyTowerButtonClicked;
+            _destroyTowerToolView.SetHighlight(false);
 
             _towerCreateTool = new(_towerConfigService, _towerInventoryController, _raycastLayerMask.value, _mainCamera);
             _towerDestroyTool = new(_towerConfigService, _raycastLayerMask.value, _mainCamera);
-
             _towerCreateTool.TowerCreated += OnToolTowerCreated;
             _towerCreateTool.IncorrectInput += OnTowerCreateToolIncorrectInput;
             _towerDestroyTool.TowerDestroyed += OnTowerDestroyd;
             _towerDestroyTool.IncorrectInput += OnTowerDestroyToolIncorrectInput;
         }
-
-
         private void Update()
         {
             if (_towerCreateTool.ToolEnabled)
@@ -55,20 +49,20 @@ namespace Game.Levels
         private void OnDestroyTowerButtonClicked()
         {
             // disable create tool always
-            _currentSelectedTowerInventory = -1;
             _towerCreateTool.SetToolState(false);
             if (_currentSelectedTowerInventory != -1)
                 _towerInventoryView.SetHighlight(_currentSelectedTowerInventory, false);
+            _currentSelectedTowerInventory = -1;
 
             if (_towerDestroyTool.ToolEnabled) // already enabled, toggle = disable
             {
                 _towerDestroyTool.SetToolState(false);
-                _destroyTowerButtonHighlight.SetActive(false);
+                _destroyTowerToolView.SetHighlight(false);
             }
             else
             {
                 _towerDestroyTool.SetToolState(true);
-                _destroyTowerButtonHighlight.SetActive(true);
+                _destroyTowerToolView.SetHighlight(true);
             }
         }
         private void OnInventorySlotButtonClicked(int slotIndex)
@@ -77,7 +71,7 @@ namespace Game.Levels
                 return;
 
             // disable destroy tool always
-            _destroyTowerButtonHighlight.SetActive(false);
+            _destroyTowerToolView.SetHighlight(false);
             _towerDestroyTool.SetToolState(false);
 
             // if create tool already enabled and its the selected tower then disable
@@ -127,12 +121,12 @@ namespace Game.Levels
         }
         private void OnTowerDestroyd(TowerDestroyTool.TowerDestroyedEventArgs args)
         {
-            _destroyTowerButtonHighlight.SetActive(false);
+            _destroyTowerToolView.SetHighlight(false);
             _towerDestroyTool.SetToolState(false);
         }
         private void OnTowerDestroyToolIncorrectInput()
         {
-            _destroyTowerButtonHighlight.SetActive(false);
+            _destroyTowerToolView.SetHighlight(false);
             _towerDestroyTool.SetToolState(false);
         }
     }

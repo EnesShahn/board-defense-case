@@ -24,18 +24,18 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 5104984169798697134
-      type: {class: EnemyHealthConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: EnemyHealthConfigData, ns: Game.Enemies.ConfigDatas, asm: Game}
       data:
         _maxHealth: 10
     - rid: 5104984169798697135
-      type: {class: EnemyDamageConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: EnemyDamageConfigData, ns: Game.Enemies.ConfigDatas, asm: Game}
       data:
         _damage: 1
     - rid: 5104984169798697136
-      type: {class: EnemyFireRateConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: EnemyFireRateConfigData, ns: Game.Enemies.ConfigDatas, asm: Game}
       data:
         _fireRate: 1
     - rid: 5104984169798697201
-      type: {class: EnemyMoveSpeedConfigData, ns: Game.Enemies.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: EnemyMoveSpeedConfigData, ns: Game.Enemies.ConfigDatas, asm: Game}
       data:
         _moveSpeed: 0.5

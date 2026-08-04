@@ -27,22 +27,22 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 5104984169798697037
-      type: {class: TowerDamageConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: TowerDamageConfigData, ns: Game.Towers.ConfigDatas, asm: Game}
       data:
         _damage: 3
     - rid: 5104984169798697038
-      type: {class: TowerHealthConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: TowerHealthConfigData, ns: Game.Towers.ConfigDatas, asm: Game}
       data:
         _maxHealth: 3
     - rid: 5104984169798697040
-      type: {class: TowerFireRateConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: TowerFireRateConfigData, ns: Game.Towers.ConfigDatas, asm: Game}
       data:
         _fireRate: 0.3333
     - rid: 5104984169798697041
-      type: {class: TowerFireDirectionConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: TowerFireDirectionConfigData, ns: Game.Towers.ConfigDatas, asm: Game}
       data:
         _fireDirection: 0
     - rid: 5104984169798697407
-      type: {class: TowerAttackRangeConfigData, ns: Game.Towers.ConfigDatas, asm: ESF.Gameplay}
+      type: {class: TowerAttackRangeConfigData, ns: Game.Towers.ConfigDatas, asm: Game}
       data:
         _range: 8

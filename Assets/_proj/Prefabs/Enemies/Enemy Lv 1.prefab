@@ -212,7 +212,7 @@ MonoBehaviour:
   _enemyComponent:
     _target: {fileID: 7244998881192879100}
   _serializableType:
-    typeId: Game.Enemies.Components.EnemyHealthController, ESF.Gameplay, Version=0.0.0.0,
+    typeId: Game.Enemies.Components.EnemyHealthController, Game, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1780286202849836118
 GameObject:
@@ -408,7 +408,7 @@ MonoBehaviour:
   _enemyComponent:
     _target: {fileID: 4756674813942100880}
   _serializableType:
-    typeId: Game.Enemies.Components.EnemyDestructionController, ESF.Gameplay, Version=0.0.0.0,
+    typeId: Game.Enemies.Components.EnemyDestructionController, Game, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &4271848066257215794
 GameObject:
@@ -472,8 +472,8 @@ MonoBehaviour:
   _enemyComponent:
     _target: {fileID: 6212150090666795000}
   _serializableType:
-    typeId: Game.Enemies.Components.WaveCommandReceiver, ESF.Gameplay, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    typeId: Game.Enemies.Components.WaveCommandReceiver, Game, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &4795403582139982322
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,8 +632,8 @@ MonoBehaviour:
   _enemyComponent:
     _target: {fileID: 5167160357292732621}
   _serializableType:
-    typeId: Game.Enemies.Components.BasicEnemyShootAtTowerController, ESF.Gameplay,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    typeId: Game.Enemies.Components.BasicEnemyShootAtTowerController, Game, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &5892376148930502835
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,8 +893,8 @@ MonoBehaviour:
   _enemyComponent:
     _target: {fileID: 4361723711306346334}
   _serializableType:
-    typeId: Game.Enemies.Components.BasicEnemyShootAtBaseController, ESF.Gameplay,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    typeId: Game.Enemies.Components.BasicEnemyShootAtBaseController, Game, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8241035378450283110
 GameObject:
   m_ObjectHideFlags: 0

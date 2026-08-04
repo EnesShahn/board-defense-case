@@ -152,8 +152,8 @@ MonoBehaviour:
   _towerComponent:
     _target: {fileID: 2385732513770263748}
   _serializableType:
-    typeId: Game.Towers.Components.TowerRangeController, ESF.Gameplay, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    typeId: Game.Towers.Components.TowerRangeController, Game, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &2595931053451966512
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   _towerComponent:
     _target: {fileID: 2648634570408945234}
   _serializableType:
-    typeId: Game.Towers.Components.TowerHealthController, ESF.Gameplay, Version=0.0.0.0,
+    typeId: Game.Towers.Components.TowerHealthController, Game, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6675503061022051773
 GameObject:
@@ -854,7 +854,7 @@ MonoBehaviour:
   _towerComponent:
     _target: {fileID: 6779357779847586374}
   _serializableType:
-    typeId: Game.Towers.Components.TowerDestructionController, ESF.Gameplay, Version=0.0.0.0,
+    typeId: Game.Towers.Components.TowerDestructionController, Game, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6865246003257844999
 GameObject:
@@ -1053,8 +1053,8 @@ MonoBehaviour:
   _towerComponent:
     _target: {fileID: 3301855163625916595}
   _serializableType:
-    typeId: Game.Towers.Components.TowerCellReference, ESF.Gameplay, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    typeId: Game.Towers.Components.TowerCellReference, Game, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &8889048404298727583
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bbe4028ceabb34c87ad8b566259cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: L2::L2.Cells.Cell
-  _index: {x: 0, y: 0}
+  _cellIndex: {x: 0, y: 0}
 --- !u!114 &7630846368285298238
 MonoBehaviour:
   m_ObjectHideFlags: 0
