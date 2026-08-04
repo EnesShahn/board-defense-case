@@ -33,6 +33,9 @@ namespace Game.Towers.Components
 
             _enemiesInRange.Add(enemyTag.EnemyRoot);
             _enemiesInRangeHashSet.Add(enemyTag.EnemyRoot);
+
+            enemyTag.EnemyRoot.EnemyPreDestroy.AddListener(OnEnemyPreDestroy);
+
             EnemyEntered?.Invoke(this, enemyTag.EnemyRoot);
         }
         private void OnTriggerExited(object sender, Collider e)
@@ -42,7 +45,16 @@ namespace Game.Towers.Components
 
             _enemiesInRange.Remove(enemyTag.EnemyRoot);
             _enemiesInRangeHashSet.Remove(enemyTag.EnemyRoot);
+
+            enemyTag.EnemyRoot.EnemyPreDestroy.RemoveListener(OnEnemyPreDestroy);
+
             EnemyExited?.Invoke(this, enemyTag.EnemyRoot);
+        }
+
+        private void OnEnemyPreDestroy(object sender, EnemyRoot enemyRoot)
+        {
+            _enemiesInRange.Remove(enemyRoot);
+            _enemiesInRangeHashSet.Remove(enemyRoot);
         }
 
         public void ClearEnemies()

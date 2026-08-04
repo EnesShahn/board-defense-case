@@ -1,13 +1,21 @@
+using ESF.Core.DataRepository;
 using UnityEngine;
 using ESF.Core.Services;
 
-[DefaultExecutionOrder(-150)]
-public class GameRepositoryInstaller : MonoBehaviour
+namespace Game.GameRepositorySystem
 {
-    private void Awake()
+    [DefaultExecutionOrder(-150)]
+    public class GameRepositoryInstaller : MonoBehaviour
     {
-        GameRepository gameRepository = new GameRepository("Game");
-        gameRepository.Load();
-        Service.Register(gameRepository);
+        private void Awake()
+        {
+            var repositoryService = Service.Resolve<RepositoryService>();
+
+            GameRepository gameRepository = new GameRepository("Game");
+            repositoryService.AddRepositoryForSync(gameRepository);
+            Service.Register(gameRepository);
+
+            Debug.Log("Game Repository " + gameRepository.Data.CurrentLevelIndex);
+        }
     }
 }

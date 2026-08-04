@@ -12,6 +12,8 @@ namespace Game.Enemies.Configs
         private readonly Dictionary<int, EnemyConfig> _enemyConfigMap = new();
         private readonly Dictionary<int, ObjectPool<EnemyRoot>> _enemyPrefabPoolMap = new();
 
+        private List<EnemyRoot> _activeEnemies = new();
+
         private Transform _enemyPoolParent;
 
         public EnemyConfigService(List<EnemyConfig> enemyConfigs)
@@ -56,11 +58,12 @@ namespace Game.Enemies.Configs
         public void Dispose()
         {
             foreach (var prefabPool in _enemyPrefabPoolMap)
-            {
                 prefabPool.Value.Dispose();
-            }
-
-            GameObject.DestroyImmediate(_enemyPoolParent);
+            foreach (var activeEnemy in _activeEnemies)
+                if (activeEnemy != null)
+                    GameObject.DestroyImmediate(activeEnemy.gameObject);
+            if (_enemyPoolParent != null)
+                GameObject.DestroyImmediate(_enemyPoolParent.gameObject);
         }
 
 
@@ -70,28 +73,33 @@ namespace Game.Enemies.Configs
                 return null;
 
             var newEnemy = _enemyPrefabPoolMap[enemyConfigId].Get();
+            _activeEnemies.Add(newEnemy);
+
             newEnemy.EnemyPreCreate?.Invoke(this, newEnemy);
-
             newEnemy.transform.SetParent(null);
-
+            newEnemy.SetIsCreatedAndActive(true);
             newEnemy.EnemyPostCreate?.Invoke(this, newEnemy);
 
             return newEnemy;
         }
-        public void DestroyEnemy(EnemyRoot enemyRoot)
+        public bool DestroyEnemy(EnemyRoot enemyRoot)
         {
             if (enemyRoot == null || enemyRoot.EnemyConfig == null || enemyRoot.EnemyConfig.EnemyConfigId == -1)
-                return;
+                return false;
 
             var enemyConfigId = enemyRoot.EnemyConfig.EnemyConfigId;
 
             enemyRoot.EnemyPreDestroy?.Invoke(this, enemyRoot);
-
             enemyRoot.transform.SetParent(_enemyPoolParent);
             enemyRoot.gameObject.SetActive(false);
+            enemyRoot.SetIsCreatedAndActive(false);
             _enemyPrefabPoolMap[enemyConfigId].Release(enemyRoot);
 
             enemyRoot.EnemyPostDestroy?.Invoke(this, enemyRoot);
+
+            _activeEnemies.Remove(enemyRoot);
+
+            return true;
         }
     }
 }

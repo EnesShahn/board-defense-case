@@ -24,16 +24,15 @@ namespace Game.Main
         [SerializeField] private Button _startFromZeroButton;
 
         private LevelService _levelService;
-        private RepositoryService _repositoryService;
-        private GameRepository _gameRepository;
+        private GameRepositorySystem.GameRepository _gameRepository;
         private ScreenFadeService _screenFadeService;
 
         private void Awake()
         {
             _levelService = Service.Resolve<LevelService>();
-            _repositoryService = Service.Resolve<RepositoryService>();
             _screenFadeService = Service.Resolve<ScreenFadeService>();
-            _gameRepository = Service.Resolve<GameRepository>();
+            _gameRepository = Service.Resolve<GameRepositorySystem.GameRepository>();
+            _gameRepository.Load();
 
             _screenFadeService.CancelAndSetState(true);
 
@@ -92,6 +91,7 @@ namespace Game.Main
         }
         private void OnActiveLevelAllWavesCompleted()
         {
+            Debug.Log("Level completed: " + _levelService.ActiveLevelIndex);
             if (_levelService.ActiveLevelIndex + 1 >= _levelService.LevelConfigs.Count) // no next level
             {
                 _endText.text = "Game Completed";
@@ -121,7 +121,7 @@ namespace Game.Main
             int nextLevel = _levelService.ActiveLevelIndex + 1;
             _endLevelCanvas.gameObject.SetActive(false);
             _gameRepository.Data.CurrentLevelIndex = nextLevel;
-            _repositoryService.SyncSave();
+            _gameRepository.Save();
             SwitchLevel(nextLevel);
         }
         private void OnRetryLevelButtonClicked()
@@ -133,7 +133,7 @@ namespace Game.Main
         {
             _endLevelCanvas.gameObject.SetActive(false);
             _gameRepository.Data.CurrentLevelIndex = 0;
-            _repositoryService.SyncSave();
+            _gameRepository.Save();
             SwitchLevel(0);
         }
     }

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Game.WaveSystem
@@ -22,8 +21,15 @@ namespace Game.WaveSystem
         }
         private void OnWaveCompleted(int obj)
         {
-            _waveCooldownImage.gameObject.SetActive(true);
-            _waveCooldownImage.fillAmount = 1;
+            if (_waveController.IsThereNextWave)
+            {
+                _waveCooldownImage.gameObject.SetActive(true);
+                _waveCooldownImage.fillAmount = 1;
+            }
+            else
+            {
+                _waveCooldownImage.gameObject.SetActive(false);
+            }
         }
         private void OnWaveStarted(int obj)
         {

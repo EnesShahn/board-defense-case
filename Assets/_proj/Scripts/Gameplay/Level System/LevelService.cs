@@ -27,6 +27,7 @@ namespace Game.LevelSystem
             var newLevel = GameObject.Instantiate(_levelConfigs[levelIndex].Prefab, Vector3.zero, Quaternion.identity);
 
             _activeLevel = newLevel;
+            _activeLevelIndex = levelIndex;
             return newLevel;
         }
         public void DestroyActiveLevel()
@@ -37,6 +38,7 @@ namespace Game.LevelSystem
             GameObject.DestroyImmediate(_activeLevel);
 
             _activeLevel = null;
+            _activeLevelIndex = -1;
         }
     }
 }
