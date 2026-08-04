@@ -33,11 +33,7 @@ namespace ESF.Misc.Billboarding
         {
             if (_centerReference != null)
             {
-                Vector3 lookAtPosition = _billboardService.TargetCamera.transform.position;
-                var xzDirection = (transform.position - lookAtPosition.WithY(transform.position.y)).normalized;
-                var lookRotation = Quaternion.LookRotation(xzDirection);
-                var relativeToTargetOffset = lookRotation * _relativeToTargetOffset;
-                transform.position = _centerReference.position + relativeToTargetOffset;
+                transform.position = _centerReference.position + _relativeToTargetOffset;
             }
 
             transform.rotation = _billboardService.TargetCamera.transform.rotation;
