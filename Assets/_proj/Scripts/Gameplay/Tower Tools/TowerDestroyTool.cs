@@ -4,6 +4,7 @@ using Game.TowerCells;
 using Game.Towers.Components;
 using Game.Towers.Configs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Game.TowerTools
@@ -45,11 +46,15 @@ namespace Game.TowerTools
             if (Input.touchCount == 0 && !Mouse.current.leftButton.wasPressedThisFrame)
                 return;
 
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             Ray ray;
             if (Input.touchCount == 0)
                 ray = _camera.ScreenPointToRay(Mouse.current.position.value);
             else
                 ray = _camera.ScreenPointToRay(Input.GetTouch(0).position);
+
 
             int hitCount = Physics.RaycastNonAlloc(ray, _raycastHits, float.MaxValue, _raycastLayerMask);
             if (hitCount <= 0)
