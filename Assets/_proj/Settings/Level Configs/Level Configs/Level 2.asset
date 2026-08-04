@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad52a0238763a8458fdf3b51809728c, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: ESF.Gameplay::Game.LevelSystem.LevelConfig
-  _prefab: {fileID: 7798982708773870008, guid: 6892ccbcf8b0f684d91a9c695e0df03e, type: 3}
+  _prefab: {fileID: 7798982708773870008, guid: 9b1b234d3e305c94bad5445fa48fbb96, type: 3}

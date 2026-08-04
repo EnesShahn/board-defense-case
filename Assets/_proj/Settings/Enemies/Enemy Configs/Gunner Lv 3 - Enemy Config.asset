@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gunner Lv 3 - Enemy Config
   m_EditorClassIdentifier: ESF.Characters::ESF.Enemies.EnemyConfig
   _enemyConfigId: {fileID: 11400000, guid: d4e4f0dc19bfc2744a7c1dee767f12e8, type: 2}
-  _prefab: {fileID: 4477116203212548413, guid: 4d243ae225691fd498208729728222e9, type: 3}
+  _prefab: {fileID: 4477116203212548413, guid: 081387701bfec484793a2d14a4f63f0f, type: 3}
   _enemyData:
     _items:
     - rid: 5104984169798697137

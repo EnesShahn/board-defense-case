@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: ESF::ESF.Towers.TowerConfig
   _towerConfigId: {fileID: 11400000, guid: f26758ed42198c441ad02f0242174f74, type: 2}
   _towerName: Turret Lv 2
-  _towerIcon: {fileID: 0}
-  _prefab: {fileID: 6290316140023207861, guid: 7f4b306185a6a8043a00e03010020b2d, type: 3}
+  _towerIcon: {fileID: 21300000, guid: 4dd1dcf3b6608c34f9b283b6fb14c360, type: 3}
+  _prefab: {fileID: 6290316140023207861, guid: 81e1d7bc9310d824f9fd451ae9481722, type: 3}
   _towerData:
     _items:
     - rid: 5104984169798697043

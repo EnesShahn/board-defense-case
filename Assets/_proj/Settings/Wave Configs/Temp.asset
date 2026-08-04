@@ -18,3 +18,13 @@ MonoBehaviour:
     - _enemyConfigId: {fileID: 11400000, guid: df290c4decab07848a329a260af64f43, type: 2}
       _spawnInterval: 1
       _spawnCount: 1
+  - _waveInterval: 1
+    _waveEnemyConfigs:
+    - _enemyConfigId: {fileID: 11400000, guid: df290c4decab07848a329a260af64f43, type: 2}
+      _spawnInterval: 1
+      _spawnCount: 1
+  - _waveInterval: 1
+    _waveEnemyConfigs:
+    - _enemyConfigId: {fileID: 11400000, guid: df290c4decab07848a329a260af64f43, type: 2}
+      _spawnInterval: 1
+      _spawnCount: 1
