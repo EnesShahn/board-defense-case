@@ -6,6 +6,8 @@ using Game.Towers.Configs;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace Game.TowerTools
 {
@@ -36,6 +38,10 @@ namespace Game.TowerTools
         public void SetToolState(bool enabled)
         {
             _toolEnabled = enabled;
+            if (enabled)
+                EnhancedTouchSupport.Enable();
+            else
+                EnhancedTouchSupport.Disable();
         }
 
         public void OnUpdate()
@@ -43,17 +49,17 @@ namespace Game.TowerTools
             if (!_toolEnabled)
                 return;
 
-            if (Input.touchCount == 0 && !Mouse.current.leftButton.wasPressedThisFrame)
+            if (Touch.activeTouches.Count == 0 && !Mouse.current.leftButton.wasPressedThisFrame)
                 return;
 
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
             Ray ray;
-            if (Input.touchCount == 0)
+            if (Touch.activeTouches.Count == 0)
                 ray = _camera.ScreenPointToRay(Mouse.current.position.value);
             else
-                ray = _camera.ScreenPointToRay(Input.GetTouch(0).position);
+                ray = _camera.ScreenPointToRay(Touch.activeTouches[0].screenPosition);
 
 
             int hitCount = Physics.RaycastNonAlloc(ray, _raycastHits, float.MaxValue, _raycastLayerMask);

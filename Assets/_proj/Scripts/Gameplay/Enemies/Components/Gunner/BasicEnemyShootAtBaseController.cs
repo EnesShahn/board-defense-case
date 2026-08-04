@@ -47,6 +47,10 @@ namespace Game.Enemies.Components
                 if (_targetBaseRoot == null)
                     return;
 
+                var baseHealthController = _targetBaseRoot.GetComponentInChildren<BaseHealthController>();
+                if (baseHealthController.CurrentHealth == 0)
+                    return;
+
                 _fireTimer = 0;
                 _reloadImage.fillAmount = 0;
 
@@ -59,7 +63,6 @@ namespace Game.Enemies.Components
 
                     if (_targetBaseRoot != null)
                     {
-                        var baseHealthController = _targetBaseRoot.GetComponentInChildren<BaseHealthController>();
                         baseHealthController.ReceiveDamage(_enemyDamageConfigData.Damage);
                     }
                 });
