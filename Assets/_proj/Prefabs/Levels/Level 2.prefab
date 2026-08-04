@@ -1571,8 +1571,9 @@ GameObject:
   - component: {fileID: 7628192037387346610}
   - component: {fileID: 8941182072426956308}
   - component: {fileID: 8974307821742387835}
+  - component: {fileID: 4074401451950764819}
   m_Layer: 0
-  m_Name: Level 0
+  m_Name: Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1662,7 +1663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ESF.Gameplay::ESF.Gameplay.EnemySpawner
   _cellManager: {fileID: 7628192037387346610}
-  _waveControllerConfig: {fileID: 11400000, guid: 7dc8876af232a154a8ae8bc0e1b901cc, type: 2}
+  _waveControllerConfig: {fileID: 11400000, guid: e4534f9d6d64fbd4e84a9bcef8038be5, type: 2}
   _enemyStartPositionPerLane:
   - {fileID: 4951697432908734633}
   - {fileID: 1898519041978545800}
@@ -1681,7 +1682,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ESF.Gameplay::Game.Main.InitializeTowerInventory
   _towerInventoryView: {fileID: 3027431603469317794}
-  _towerInventoryConfig: {fileID: 11400000, guid: 54d6e5b222be7124d80fc6d34c267fb4, type: 2}
+  _towerInventoryConfig: {fileID: 11400000, guid: d0819857e437bbf47b99c6286932deea, type: 2}
+--- !u!114 &4074401451950764819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798982708773870008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bafc13cb5ea4b047922792b37647b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::LevelServiceDestroyer
 --- !u!1 &8023785402859243375
 GameObject:
   m_ObjectHideFlags: 0
