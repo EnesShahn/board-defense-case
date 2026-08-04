@@ -6,7 +6,7 @@ using Game.Enemies.Configs;
 namespace Game.Enemies.ConfigDatas
 {
     [Serializable]
-    [MovedFrom(true, "ESF.Gameplay.Enemies", "ESF.Gameplay", "EnemyFireRate")]
+    [MovedFrom(true, sourceAssembly: "ESF.Gameplay")]
     public class EnemyFireRateConfigData : IEnemyData
     {
         [SerializeField] private float _fireRate;

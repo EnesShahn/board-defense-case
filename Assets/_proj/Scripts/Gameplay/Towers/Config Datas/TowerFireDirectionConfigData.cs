@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace Game.Towers.ConfigDatas
 {
     [Serializable]
-    [MovedFrom(true, "ESF.Gameplay.Towers", "ESF.Gameplay", "TowerFireDirection")]
+    [MovedFrom(true, sourceAssembly: "ESF.Gameplay")]
     public class TowerFireDirectionConfigData : ITowerData
     {
         [SerializeField] private TowerFireDirectionType _fireDirection;

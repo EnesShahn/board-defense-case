@@ -58,22 +58,26 @@ namespace Game.Main
             await UniTask.WaitForSeconds(0.1f);
 
             var newLevel = _levelService.CreateLevel(levelIndex);
-            NewLevelListenSetup(newLevel);
+            SetupNewLevel(newLevel);
             await UniTask.WaitForSeconds(0.1f);
 
             await _screenFadeService.DOFadeOut(_fadeInOutTime);
+
+            var newLevelWaveController = newLevel.GetComponent<WaveController>();
+            newLevelWaveController.enabled = true;
         }
 
 
-        private void NewLevelListenSetup(GameObject newLevel)
+        private void SetupNewLevel(GameObject newLevel)
         {
             //TODO: improve the locating of dependency
             var newLevelWaveController = newLevel.GetComponent<WaveController>();
             var newLevelBaseController = newLevel.GetComponentInChildren<BaseRoot>();
-
-            newLevelWaveController.AllWavesCompleted += OnActiveLevelAllWavesCompleted;
             var baseHealthController = newLevelBaseController.GetComponentInChildren<BaseHealthController>();
 
+            newLevelWaveController.enabled = false;
+
+            newLevelWaveController.AllWavesCompleted += OnActiveLevelAllWavesCompleted;
             baseHealthController.HealthReachedZero += OnBaseHealthReachedZero;
         }
 
@@ -104,6 +108,12 @@ namespace Game.Main
                 _startFromZeroButton.gameObject.SetActive(false);
                 _endLevelCanvas.gameObject.SetActive(true);
             }
+
+            var newLevelWaveController = _levelService.ActiveLevel.GetComponent<WaveController>();
+            var newLevelBaseController = _levelService.ActiveLevel.GetComponentInChildren<BaseRoot>();
+            var baseHealthController = newLevelBaseController.GetComponentInChildren<BaseHealthController>();
+            newLevelWaveController.AllWavesCompleted -= OnActiveLevelAllWavesCompleted;
+            baseHealthController.HealthReachedZero -= OnBaseHealthReachedZero;
         }
 
         private void OnNextLevelButtonClicked()

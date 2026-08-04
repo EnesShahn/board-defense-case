@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace Game.Enemies.ConfigDatas
 {
     [Serializable]
-    [MovedFrom(true, "ESF.Gameplay.Enemies", "ESF.Gameplay", "EnemyDamage")]
+    [MovedFrom(true, sourceAssembly: "ESF.Gameplay")]
     public class EnemyDamageConfigData : IEnemyData
     {
         [SerializeField] private int _damage;

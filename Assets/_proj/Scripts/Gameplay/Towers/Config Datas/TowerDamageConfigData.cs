@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace Game.Towers.ConfigDatas
 {
     [Serializable]
-    [MovedFrom(true, "ESF.Gameplay.Towers", "ESF.Gameplay", "TowerDamage")]
+    [MovedFrom(true, sourceAssembly: "ESF.Gameplay")]
     public class TowerDamageConfigData : ITowerData
     {
         [SerializeField] private int _damage;

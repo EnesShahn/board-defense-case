@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace Game.Enemies.ConfigDatas
 {
     [Serializable]
-    [MovedFrom(true, "ESF.Gameplay.Enemies", "ESF.Gameplay", "EnemyMoveSpeed")]
+    [MovedFrom(true, sourceAssembly: "ESF.Gameplay")]
     public class EnemyMoveSpeedConfigData : IEnemyData
     {
         [SerializeField] private float _moveSpeed;
