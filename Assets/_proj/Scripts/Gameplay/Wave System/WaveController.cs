@@ -22,7 +22,7 @@ namespace Game.WaveSystem
 
         private bool _isWaveActive;
 
-        private int _currentWave;
+        private int _currentWaveIndex;
         private float _currentWaveInterval;
         private float _waveTimer;
 
@@ -31,7 +31,7 @@ namespace Game.WaveSystem
         private float _spawnTimer;
 
         public bool IsWaveActive => _isWaveActive;
-        public int CurrentWave => _currentWave;
+        public int CurrentWaveIndex => _currentWaveIndex;
         public float CurrentWaveInterval => _currentWaveInterval;
         public float WaveTimer => _waveTimer;
 
@@ -49,12 +49,12 @@ namespace Game.WaveSystem
 
         private void Update()
         {
-            if (_currentWave == _waveControllerConfig.WaveConfigs.Length)
+            if (_currentWaveIndex >= _waveControllerConfig.WaveConfigs.Length)
                 return;
 
             if (_isWaveActive)
             {
-                var currentWave = _waveControllerConfig.WaveConfigs[_currentWave];
+                var currentWave = _waveControllerConfig.WaveConfigs[_currentWaveIndex];
                 var currentWaveEnemyConfigs = currentWave.WaveEnemyConfigs;
                 var currentWaveEnemyConfig = currentWaveEnemyConfigs[_currentWaveEnemy];
 
@@ -63,14 +63,15 @@ namespace Game.WaveSystem
                 {
                     // if (GetTotalActiveEnemies() == 0)
                     {
-                        _currentWave++;
-                        if (_currentWave >= _waveControllerConfig.WaveConfigs.Length)
+                        _currentWaveIndex++;
+                        if (_currentWaveIndex >= _waveControllerConfig.WaveConfigs.Length)
                             _currentWaveInterval = 0;
                         else
-                            _currentWaveInterval = _waveControllerConfig.WaveConfigs[_currentWave].WaveInterval;
+                            _currentWaveInterval = _waveControllerConfig.WaveConfigs[_currentWaveIndex].WaveInterval;
                         _spawnTimer = 0;
                         _waveTimer = 0;
                         _isWaveActive = false;
+                        WaveCompleted?.Invoke(_currentWaveIndex - 1);
                     }
 
                     return;
@@ -97,14 +98,14 @@ namespace Game.WaveSystem
             }
             else
             {
-                if (_currentWave == _waveControllerConfig.WaveConfigs.Length)
+                if (_currentWaveIndex == _waveControllerConfig.WaveConfigs.Length)
                 {
                     AllWavesCompleted?.Invoke();
                     enabled = false;
                     return;
                 }
 
-                var currentWave = _waveControllerConfig.WaveConfigs[_currentWave];
+                var currentWave = _waveControllerConfig.WaveConfigs[_currentWaveIndex];
                 var currentWaveInterval = currentWave.WaveInterval;
 
                 _waveTimer += Time.deltaTime;
@@ -113,6 +114,8 @@ namespace Game.WaveSystem
                 {
                     _waveTimer = 0;
                     _isWaveActive = true;
+                    _currentWaveEnemySpawnCount = 0;
+                    WaveStarted?.Invoke(_currentWaveIndex);
                 }
             }
         }

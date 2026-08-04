@@ -9,7 +9,6 @@ namespace Game.WaveSystem
     {
         [SerializeField] private TMP_Text _waveNumberText;
         [SerializeField] private Image _waveCooldownImage;
-        [FormerlySerializedAs("_enemySpawner")]
         [SerializeField] private WaveController _waveController;
 
         private void Awake()
@@ -29,6 +28,7 @@ namespace Game.WaveSystem
         private void OnWaveStarted(int obj)
         {
             _waveCooldownImage.gameObject.SetActive(false);
+            _waveNumberText.text = $"Wave {_waveController.CurrentWaveIndex + 1}";
         }
 
         private void Update()
