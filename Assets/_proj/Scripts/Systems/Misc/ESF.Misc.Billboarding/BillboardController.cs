@@ -9,8 +9,6 @@ namespace ESF.Misc.Billboarding
         [SerializeField] private Transform _centerReference;
         [SerializeField] private Vector3 _relativeToTargetOffset;
 
-        [SerializeField] private bool _freezeXRotation;
-
         private BillboardService _billboardService;
 
 
@@ -33,21 +31,16 @@ namespace ESF.Misc.Billboarding
 
         public void BillboardUpdate()
         {
-            Vector3 lookAtPosition = _billboardService.TheTarget.position;
-            var xzDirection = (transform.position - lookAtPosition.WithY(transform.position.y)).normalized;
-
-
             if (_centerReference != null)
             {
+                Vector3 lookAtPosition = _billboardService.TargetCamera.transform.position;
+                var xzDirection = (transform.position - lookAtPosition.WithY(transform.position.y)).normalized;
                 var lookRotation = Quaternion.LookRotation(xzDirection);
                 var relativeToTargetOffset = lookRotation * _relativeToTargetOffset;
                 transform.position = _centerReference.position + relativeToTargetOffset;
             }
 
-            if (_freezeXRotation)
-                transform.rotation = Quaternion.LookRotation(-xzDirection);
-            else
-                transform.rotation = Quaternion.LookRotation(transform.position - lookAtPosition);
+            transform.rotation = _billboardService.TargetCamera.transform.rotation;
         }
     }
 }

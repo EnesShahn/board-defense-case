@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5528124785905426936
 Transform:
   m_ObjectHideFlags: 0
@@ -293,6 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8942343736358785504}
   - component: {fileID: 5553809179933200282}
+  - component: {fileID: 1858910747890868852}
   m_Layer: 5
   m_Name: HP UI Canvas
   m_TagString: Untagged
@@ -343,6 +344,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1858910747890868852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333033641992147102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146e448ee3bd28a4b83db7c4f4c50be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ESF.Misc.Billboarding::ESF.Misc.Billboarding.BillboardController
+  _centerReference: {fileID: 5528124785905426936}
+  _relativeToTargetOffset: {x: 0, y: 2, z: 0}
+  _freezeXRotation: 0
 --- !u!1 &2666487623245188550
 GameObject:
   m_ObjectHideFlags: 0

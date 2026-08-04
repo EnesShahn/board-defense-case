@@ -8,11 +8,11 @@ namespace ESF.Misc.Billboarding
     public class BillboardService
     {
         private UpdateService _updateService;
-        private Transform _theTarget;
+        private Camera _targetCamera;
 
         private HashSet<BillboardController> _billboardControllers;
 
-        public Transform TheTarget => _theTarget;
+        public Camera TargetCamera => _targetCamera;
 
         public BillboardService(ReadonlyServiceContainer serviceContainer)
         {
@@ -26,9 +26,9 @@ namespace ESF.Misc.Billboarding
             _updateService.OnUpdate -= OnUpdate;
         }
         
-        public void SetTarget(Transform target)
+        public void SetTargetCamera(Camera targetCamera)
         {
-            _theTarget = target;
+            _targetCamera = targetCamera;
         }
 
         public void RegisterBillboard(BillboardController billboardController)
@@ -42,7 +42,7 @@ namespace ESF.Misc.Billboarding
 
         private void OnUpdate()
         {
-            if (_theTarget == null)
+            if (_targetCamera == null)
                 return;
 
             foreach (var billboardController in _billboardControllers)

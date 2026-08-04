@@ -12,7 +12,6 @@ namespace Game.Main
     public class ApplicationServiceInstaller : MonoBehaviour
     {
         [SerializeField] private ScreenFadeService _screenFadeService;
-        [SerializeField] private Transform _billboardTarget;
         [SerializeField] private LevelConfigCollection _levelConfigCollection;
         [SerializeField] private Camera _mainCamera;
 
@@ -31,7 +30,7 @@ namespace Game.Main
             Service.Register<UpdateService>(updateService);
 
             var billboardService = new BillboardService(Service.ReadonlyServiceContainer);
-            billboardService.SetTarget(_billboardTarget);
+            billboardService.SetTargetCamera(_mainCamera);
             Service.Register<BillboardService>(billboardService);
 
             var repositoryService = new RepositoryService(updateService, 10);
