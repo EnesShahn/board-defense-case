@@ -1,0 +1,16 @@
+{
+    "name": "ESF.Core.Services.Editor",
+    "rootNamespace": "ESF.Core.Services.Editor",
+    "references": [
+        "ESF.Core.Services"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
